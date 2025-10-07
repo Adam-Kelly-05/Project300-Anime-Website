@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import { Button } from "@/components/ui/button"
 
-export default function buttonCounter() {
+export default function ButtonCounter() {
   const [counter, setCounter] = useState(0); // Automaticlly updates the UI on state change
 
   return (
