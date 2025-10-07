@@ -1,4 +1,4 @@
-import ButtonCounter from "@/components/buttonCounter";
+import ButtonCounter from "@/components/buttonCounter"; // Import the ButtonCounter component
 
 export default function AboutPage() {
   return (

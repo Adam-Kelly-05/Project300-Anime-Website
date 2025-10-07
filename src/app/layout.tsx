@@ -27,7 +27,9 @@ export default function RootLayout({
         <Button asChild variant="outline" className="bg-zinc-950 text-white hover:text-white hover:bg-zinc-950">
           <Link href="/contact">Go to Contact Page</Link>
         </Button>
+        {/* Everything in the specific pages will be rendered after the layout optinons */}
         {children}
+        {/* Footer would go here */}
       </body>
     </html>
   );
