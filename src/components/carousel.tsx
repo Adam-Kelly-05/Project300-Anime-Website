@@ -21,7 +21,7 @@ export default function CarouselObject() {
                                     <p className="text-sm text-gray-950">{item.japaneseTitle}</p>
                                     <p className="text-sm text-gray-950">{item.airedDate}</p>
                                     <p className="text-sm text-gray-950">{item.background}</p>
-                                    <a className="text-sm text-gray-950" href={item.trailerURL} target="_blank" rel="noopener noreferrer">Trailer</a>
+                                    <a className="text-sm text-gray-950" href={item.trailerURL}>Trailer</a>
                                 </CardContent>
                             </Card>
                         </CarouselItem>
