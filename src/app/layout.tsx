@@ -19,13 +19,13 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-black text-white">
         <Button asChild variant="outline" className="bg-zinc-950 text-white hover:text-white hover:bg-zinc-950">
-          <Link href="/">Go to Home Page</Link>
+          <Link href="/">Home</Link>
         </Button>
         <Button asChild variant="outline" className="bg-zinc-950 text-white hover:text-white hover:bg-zinc-950">
-          <Link href="/about">Go to About Page</Link>
+          <Link href="/anime">Anime</Link>
         </Button>
         <Button asChild variant="outline" className="bg-zinc-950 text-white hover:text-white hover:bg-zinc-950">
-          <Link href="/contact">Go to Contact Page</Link>
+          <Link href="/reviews">Reviews</Link>
         </Button>
         {/* Everything in the specific pages will be rendered after the layout optinons */}
         {children}
