@@ -1,5 +1,6 @@
 // src/app/layout.tsx is anything that's common across all pages, like a nav bar and footer
 
+import React from "react";
 import type { Metadata } from "next";
 import "./globals.css";
 import Link from "next/link";

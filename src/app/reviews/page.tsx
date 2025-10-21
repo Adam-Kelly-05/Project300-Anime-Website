@@ -1,3 +1,4 @@
+import React from "react";
 import ReviewsObject from "@/components/reviews";
 
 export default function AboutPage() {
