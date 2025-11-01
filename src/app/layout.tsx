@@ -35,8 +35,8 @@ export default function RootLayout({
               </div>
               
               {/* Navigation Links */}
-              <div className="hidden md:block">
-                <div className="ml-10 flex items-baseline space-x-4">
+              <div className="hidden md:flex items-center space-x-4">
+                <div className="flex items-baseline space-x-4">
                   <Link 
                     href="/" 
                     className="hover:bg-blue-700 px-3 py-2 rounded-md text-sm font-medium transition-colors text-white"
@@ -65,6 +65,15 @@ export default function RootLayout({
                   >
                     Search
                   </Link>
+                </div>
+                
+                {/* Profile Icon */}
+                <div className="ml-4 relative">
+                  <button className="flex items-center justify-center w-8 h-8 bg-blue-700 rounded-full hover:bg-blue-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-offset-2 focus:ring-offset-blue-600">
+                    <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                      <path fillRule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clipRule="evenodd" />
+                    </svg>
+                  </button>
                 </div>
               </div>
               
@@ -120,6 +129,18 @@ export default function RootLayout({
                 >
                   Search
                 </Link>
+                
+                {/* Mobile Profile */}
+                <div className="border-t border-blue-500 pt-3 mt-3">
+                  <button className="flex items-center w-full px-3 py-2 text-base font-medium text-white hover:bg-blue-700 rounded-md transition-colors">
+                    <div className="flex items-center justify-center w-8 h-8 bg-blue-700 rounded-full mr-3">
+                      <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path fillRule="evenodd" d="M7.5 6a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM3.751 20.105a8.25 8.25 0 0116.498 0 .75.75 0 01-.437.695A18.683 18.683 0 0112 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 01-.437-.695z" clipRule="evenodd" />
+                      </svg>
+                    </div>
+                    Profile
+                  </button>
+                </div>
               </div>
             </div>
           )}
