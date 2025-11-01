@@ -144,14 +144,6 @@ export default function RootLayout({
                 <p className="text-blue-100 text-sm">
                   Built with modern web technologies to provide the best anime discovery experience.
                 </p>
-                <div className="mt-4 p-3 rounded-lg border-2" style={{
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
-                  borderColor: '#60a5fa'
-                }}>
-                  <p className="text-xs text-white font-medium">
-                    Powered by Next.js & Tailwind CSS
-                  </p>
-                </div>
               </div>
             </div>
             
