@@ -3,6 +3,7 @@
 import * as React from "react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 import anime from "../extras/anime.json"
 import {
   Carousel,
@@ -112,9 +113,11 @@ function AnimeCard({ item }: AnimeCardProps) {
             </div>
           </div>
           <div className="p-4 space-y-2">
-            <h3 className="font-bold text-lg text-foreground leading-tight line-clamp-2">
-              {item.englishTitle}
-            </h3>
+            <Link href={`/anime/${item.animeId}`}>
+              <h3 className="font-bold text-lg text-foreground leading-tight line-clamp-2 hover:text-primary cursor-pointer transition-colors">
+                {item.englishTitle}
+              </h3>
+            </Link>
             <p className="text-sm text-muted-foreground font-medium line-clamp-1">
               {item.japaneseTitle}
             </p>

@@ -103,46 +103,60 @@ export default function SearchPage() {
           {filteredAnime.length > 0 && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {filteredAnime.map((item: AnimeItem) => (
-                <Card key={item.animeId} className="bg-white/10 backdrop-blur border-white/20 hover:bg-white/20 transition-all duration-300 group">
+                <Card key={item.animeId} className="overflow-hidden transition-all duration-300 hover:scale-105 bg-card border-primary/20 shadow-lg hover:shadow-2xl hover:border-primary/40">
                   <CardContent className="p-0">
-                    <Link href={`/anime/${item.animeId}`}>
-                      <div className="relative overflow-hidden rounded-t-lg">
-                        <img
-                          src={item.cover}
-                          alt={item.englishTitle}
-                          className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
-                      </div>
-                      
-                      <div className="p-4">
-                        <h3 className="text-white font-semibold text-lg mb-2 line-clamp-2 group-hover:text-blue-300 transition-colors">
-                          {item.englishTitle}
-                        </h3>
-                        
-                        <p className="text-gray-400 text-sm mb-2">
-                          {item.japaneseTitle}
-                        </p>
-                        
-                        <p className="text-gray-300 text-sm line-clamp-3 mb-3">
-                          {item.background}
-                        </p>
-                        
-                        <div className="flex items-center justify-between">
-                          <span className="text-blue-400 text-sm">
-                            {new Date(item.airedDate).getFullYear()}
-                          </span>
-                          
-                          <Button 
-                            variant="ghost" 
-                            size="sm" 
-                            className="text-blue-400 hover:text-blue-300 hover:bg-blue-400/10 p-1"
-                          >
-                            View Details →
-                          </Button>
+                    <div className="relative">
+                      <img
+                        src={item.cover}
+                        alt={item.englishTitle}
+                        className="w-full h-[380px] object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-primary/5 to-transparent" />
+                      <div className="absolute top-2 right-2">
+                        <div className="px-2 py-1 rounded-full text-xs font-bold bg-primary text-primary-foreground">
+                          #{item.animeId}
                         </div>
                       </div>
-                    </Link>
+                    </div>
+                    
+                    <div className="p-4 space-y-2">
+                      <Link href={`/anime/${item.animeId}`}>
+                        <h3 className="font-bold text-lg text-foreground leading-tight line-clamp-2 hover:text-primary cursor-pointer transition-colors">
+                          {item.englishTitle}
+                        </h3>
+                      </Link>
+                      
+                      <p className="text-sm text-muted-foreground font-medium line-clamp-1">
+                        {item.japaneseTitle}
+                      </p>
+                      
+                      <p className="text-sm text-muted-foreground">
+                        Aired: {item.airedDate}
+                      </p>
+                      
+                      <p className="text-sm text-card-foreground/80 line-clamp-3">
+                        {item.background}
+                      </p>
+                      
+                      <Button
+                        asChild
+                        variant="outline"
+                        size="sm"
+                        className="w-full mt-3 border-primary/30 hover:border-primary/50 hover:bg-primary/5"
+                      >
+                        <a
+                          href={item.trailerURL}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center justify-center"
+                        >
+                          Watch Trailer
+                          <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h1m4 0h1" />
+                          </svg>
+                        </a>
+                      </Button>
+                    </div>
                   </CardContent>
                 </Card>
               ))}

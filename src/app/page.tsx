@@ -1,5 +1,6 @@
 "use client"
 
+import Link from "next/link";
 import CarouselObject from "@/components/carousel";
 import anime from "@/extras/anime.json";
 
@@ -100,9 +101,11 @@ export default function Home() {
                         className="w-full h-64 object-cover"
                       />
                       <div className="p-3" style={{backgroundColor: '#1a1f3a'}}>
-                        <h4 className="font-semibold text-sm text-white mb-1 truncate">
-                          {item.englishTitle}
-                        </h4>
+                        <Link href={`/anime/${item.animeId}`}>
+                          <h4 className="font-semibold text-sm text-white mb-1 truncate hover:text-blue-300 cursor-pointer transition-colors">
+                            {item.englishTitle}
+                          </h4>
+                        </Link>
                         <p className="text-xs font-medium truncate" style={{color: '#60a5fa'}}>
                           {item.airedDate}
                         </p>
