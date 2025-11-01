@@ -7,6 +7,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import SearchBar from "@/components/searchBar";
 
 export default function RootLayout({
   children,
@@ -26,6 +27,11 @@ export default function RootLayout({
                 <Link href="/" className="text-2xl font-bold text-white hover:text-blue-200" style={{color: '#ffffff'}}>
                   Anirank
                 </Link>
+              </div>
+              
+              {/* Search Bar */}
+              <div className="hidden md:flex flex-1 max-w-2xl mx-4">
+                <SearchBar />
               </div>
               
               {/* Navigation Links */}
@@ -52,6 +58,13 @@ export default function RootLayout({
                   >
                     Reviews
                   </Link>
+                  <Link 
+                    href="/search" 
+                    className="hover:bg-blue-700 px-3 py-2 rounded-md text-sm font-medium transition-colors text-white"
+                    style={{color: '#ffffff'}}
+                  >
+                    Search
+                  </Link>
                 </div>
               </div>
               
@@ -75,6 +88,10 @@ export default function RootLayout({
           {isMobileMenuOpen && (
             <div className="md:hidden border-t border-blue-500">
               <div className="px-2 pt-2 pb-3 space-y-1">
+                {/* Mobile Search */}
+                <div className="px-3 py-2">
+                  <SearchBar />
+                </div>
                 <Link 
                   href="/" 
                   className="hover:bg-blue-700 block px-3 py-2 rounded-md text-base font-medium text-white"
@@ -95,6 +112,13 @@ export default function RootLayout({
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   Reviews
+                </Link>
+                <Link 
+                  href="/search" 
+                  className="hover:bg-blue-700 block px-3 py-2 rounded-md text-base font-medium text-white"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Search
                 </Link>
               </div>
             </div>
