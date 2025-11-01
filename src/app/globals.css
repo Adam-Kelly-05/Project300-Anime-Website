@@ -1,9 +1,8 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-@custom-variant dark (&:is(.dark *));
-
-@theme inline {
+/* Replaced unsupported @theme at-rule with a standard class to avoid compile errors */
+.theme-inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -115,10 +114,19 @@
 
 @layer base {
   * {
-    @apply border-border outline-ring/50;
+    border-color: var(--border);
+    outline: 2px solid transparent;
+    outline-offset: 2px;
   }
+  
+  *:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+  
   body {
-    @apply bg-background text-foreground;
+    background: var(--background);
+    color: var(--foreground);
   }
 }
 
@@ -141,4 +149,101 @@
 .blue-border-glow {
   border: 2px solid #3b82f6;
   box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+}
+
+/* Anime Card Styling with Blue Background */
+.anime-card {
+  background: linear-gradient(135deg, #1e293b 0%, #1e3a8a 15%, #1a1f3a 100%);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.anime-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(59, 130, 246, 0.6);
+  box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(59, 130, 246, 0.3);
+}
+
+/* Alternative anime card with more blue tint */
+.anime-card-blue {
+  background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 25%, #1e293b 100%);
+  border: 1px solid rgba(96, 165, 250, 0.4);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.2), 0 2px 4px -1px rgba(59, 130, 246, 0.1);
+}
+
+.anime-card-blue:hover {
+  transform: translateY(-3px);
+  border-color: rgba(96, 165, 250, 0.7);
+  box-shadow: 0 20px 25px -5px rgba(59, 130, 246, 0.3), 0 10px 10px -5px rgba(59, 130, 246, 0.1);
+}
+
+/* Carousel Card Styling with Blue Background */
+.carousel-card {
+  background: linear-gradient(135deg, #1e293b 0%, #1e3a8a 15%, #1a1f3a 100%);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  position: relative;
+}
+
+.carousel-card:hover {
+  transform: scale(1.05);
+  border-color: rgba(59, 130, 246, 0.6);
+  box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.25), 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+/* More prominent blue carousel card */
+.carousel-card-blue {
+  background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 25%, #1e293b 100%);
+  border: 1px solid rgba(96, 165, 250, 0.4);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.2), 0 2px 4px -1px rgba(59, 130, 246, 0.1);
+  position: relative;
+}
+
+.carousel-card-blue:hover {
+  transform: scale(1.08);
+  border-color: rgba(96, 165, 250, 0.8);
+  box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.4), 0 20px 25px -5px rgba(59, 130, 246, 0.2);
+  z-index: 10;
+}
+
+/* Carousel card image styling */
+.carousel-card img, 
+.carousel-card-blue img {
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.carousel-card:hover img,
+.carousel-card-blue:hover img {
+  transform: scale(1.1);
+}
+
+/* Carousel specific content overlay */
+.carousel-card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+  color: white;
+  padding: 1rem;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.carousel-card:hover .carousel-card-overlay,
+.carousel-card-blue:hover .carousel-card-overlay {
+  transform: translateY(0);
 }
