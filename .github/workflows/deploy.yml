@@ -1,4 +1,4 @@
-name: Deploy React App to S3
+name: Deploy Next.js App to S3
 
 on:
   workflow_dispatch:
@@ -22,16 +22,17 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build React app
-        run: npm run build
+      - name: Build Next.js static site
+        run: |
+          npm run build
+          npm run export
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.ACCESSKEY }}
-          aws-secret-access-key: ${{ secrets.SECRETACCESSKEY}}
+          aws-secret-access-key: ${{ secrets.SECRETACCESSKEY }}
           aws-region: eu-west-1
 
-      - name: Sync build folder to S3
-        run: aws s3 sync build/ s3://anirank.ie --delete
-
+      - name: Sync exported files to S3
+        run: aws s3 sync out/ s3://anirank.ie --delete
