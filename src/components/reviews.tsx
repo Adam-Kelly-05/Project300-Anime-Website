@@ -1,10 +1,11 @@
+'use client'
+
 import * as React from "react"
-import anime from "../extras/anime.json"
-import reviews from "../extras/reviews.json"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card"
+import { Review } from "@/types/reviews"
 
 export default function ReviewsObject() {
-    const [reviews, setReviews] = React.useState([]);
+    const [reviews, setReviews] = React.useState<Review[]>([]);
 
     React.useEffect(() => {
         async function fetchReviews() {
@@ -20,11 +21,12 @@ export default function ReviewsObject() {
             reviews.map((review) => (
                 <Card key={review.reviewId} className="bg-white text-black rounded-xl">
                     <CardHeader>
-                        <CardTitle>{review.animeId}</CardTitle>
+                        <CardTitle>{review.animeName}</CardTitle>
                     </CardHeader>
                     <CardContent>
-                        <CardDescription>{review.reviewText}</CardDescription>
-                        <CardDescription>Rating: {review.score}/10</CardDescription>
+                        <CardDescription>{review.reviewHeader}</CardDescription>
+                        <CardDescription>{review.reviewBody}</CardDescription>
+                        <CardDescription>Rating: {review.rating}/10</CardDescription>
                     </CardContent>
                 </Card>
             ))}
