@@ -14,7 +14,9 @@ import {
   type CarouselApi,
 } from "@/components/ui/carousel"
 import { cn } from "@/lib/utils"
+import { Anime } from "@/types/animes"
 
+//----------------------
 interface AnimeItem {
   animeId: number
   englishTitle: string
@@ -24,6 +26,7 @@ interface AnimeItem {
   background: string
   trailerURL: string
 }
+//------------------------
 
 export default function AnimeCarousel() {
   const [api, setApi] = React.useState<CarouselApi>()
@@ -62,7 +65,7 @@ export default function AnimeCarousel() {
         }}
       >
         <CarouselContent className="-ml-2 md:-ml-4">
-          {anime.map((item: AnimeItem) => (
+          {anime.map((item) => (
             <CarouselItem key={item.animeId} className="pl-2 md:pl-4 basis-auto">
               <AnimeCard item={item} />
             </CarouselItem>
@@ -87,10 +90,11 @@ export default function AnimeCarousel() {
   )
 }
 
+//------------------------
 interface AnimeCardProps {
-  item: AnimeItem
+  item: Anime
 }
-
+//------------------------
 function AnimeCard({ item }: AnimeCardProps) {
   return (
     <div className="w-[280px]">
@@ -151,13 +155,13 @@ function AnimeCard({ item }: AnimeCardProps) {
     </div>
   )
 }
-
+//----------------------------------
 interface CarouselIndicatorsProps {
   count: number
   current: number
   onSelect: (index: number) => void
 }
-
+//----------------------------------
 function CarouselIndicators({ count, current, onSelect }: CarouselIndicatorsProps) {
   if (count <= 1) return null
   
