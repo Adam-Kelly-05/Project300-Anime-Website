@@ -3,10 +3,10 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import type { Anime } from "@/types/animes"
+import { AnimeCardProps } from "@/types/animeCardProps"
 
 
-
-function AnimeCard({ item }: AnimeCardProps) {
+export default function AnimeCard(item: Anime) {
   return (
     <div className="w-[280px]">
       <Card className={cn(
@@ -16,8 +16,8 @@ function AnimeCard({ item }: AnimeCardProps) {
         <CardContent className="p-0">
           <div className="relative">
             <img
-              src={item.cover}
-              alt={item.englishTitle}
+              src={item.image}
+              alt={item.title_english}
               className="w-full h-[380px] object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-primary/5 to-transparent" />
@@ -30,17 +30,17 @@ function AnimeCard({ item }: AnimeCardProps) {
           <div className="p-4 space-y-2">
             <Link href={`/anime/${item.animeId}`}>
               <h3 className="font-bold text-lg text-foreground leading-tight line-clamp-2 hover:text-primary cursor-pointer transition-colors">
-                {item.englishTitle}
+                {item.title_english}
               </h3>
             </Link>
             <p className="text-sm text-muted-foreground font-medium line-clamp-1">
-              {item.japaneseTitle}
+              {item.title_japanese}
             </p>
             <p className="text-sm text-muted-foreground">
-              Aired: {item.airedDate}
+              Aired: {item.aired}
             </p>
             <p className="text-sm text-card-foreground/80 line-clamp-3">
-              {item.background}
+              {item.synopsis}
             </p>
             <Button
               asChild
@@ -49,7 +49,7 @@ function AnimeCard({ item }: AnimeCardProps) {
               className="w-full mt-3 border-primary/30 hover:border-primary/50 hover:bg-primary/5"
             >
               <a
-                href={item.trailerURL}
+                href={item.trailer}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center"
