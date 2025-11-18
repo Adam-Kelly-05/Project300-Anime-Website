@@ -6,6 +6,12 @@ interface Props {
   params: { id: string };
 }
 
+export function generateStaticParams() {
+  return animeData.map((anime) => ({
+    id: anime.animeId.toString(),
+  }));
+}
+
 export default function Page({ params }: Props) {
   const id = Number(params.id);
 

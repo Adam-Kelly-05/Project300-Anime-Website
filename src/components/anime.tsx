@@ -28,6 +28,13 @@ export default function AnimesObject() {
     <div className="space-y-4 p-4">
       {animes.map((anime) => (
         <Card key={anime.animeId} className="bg-white text-black rounded-xl">
+
+            <img 
+                src={anime.image} 
+                alt={anime.title_english} 
+                className="w-full h-64 object-cover"
+            />
+
           <CardHeader>
             <CardTitle>{anime.title_english}</CardTitle>
           </CardHeader>
