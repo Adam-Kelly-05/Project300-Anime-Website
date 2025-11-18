@@ -1,10 +1,6 @@
 "use client"
 
 import * as React from "react"
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import Link from "next/link"
-import anime from "../extras/anime.json"
 import {
   Carousel,
   CarouselContent,
@@ -13,23 +9,15 @@ import {
   CarouselNext,
   type CarouselApi,
 } from "@/components/ui/carousel"
+import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import { Anime } from "@/types/animes"
 
-
-//----------------------
-interface AnimeItem {
-  animeId: number
-  englishTitle: string
-  japaneseTitle: string
-  cover: string
-  airedDate: string
-  background: string
-  trailerURL: string
+interface ReusableCarouselProps {
+  data: any[]                          // JSON array passed in
+  render: (item: any) => React.ReactNode // component to render each item
 }
-//------------------------
 
-export default function AnimeCarousel() {
+export default function ReusableCarousel({ data, render }: ReusableCarouselProps) {
   const [api, setApi] = React.useState<CarouselApi>()
   const [current, setCurrent] = React.useState(0)
   const [count, setCount] = React.useState(0)
@@ -42,90 +30,88 @@ export default function AnimeCarousel() {
 
   React.useEffect(() => {
     if (!api) return
+
     onSelect(api)
     api.on("reInit", onSelect)
     api.on("select", onSelect)
 
+    // ✅ FIXED CLEANUP (returns only void)
     return () => {
-      api?.off("select", onSelect)
+      api.off("reInit", onSelect)
+      api.off("select", onSelect)
     }
   }, [api, onSelect])
 
-  const scrollTo = React.useCallback((index: number) => {
+  const scrollTo = (index: number) => {
     api?.scrollTo(index)
-  }, [api])
+  }
 
   return (
     <div className="w-full">
       <Carousel
         setApi={setApi}
         className="w-full max-w-full"
-        opts={{
-          align: "start",
-          loop: true,
-        }}
+        opts={{ align: "start", loop: true }}
       >
         <CarouselContent className="-ml-2 md:-ml-4">
-          {anime.map((item) => (
-            <CarouselItem key={item.animeId} className="pl-2 md:pl-4 basis-auto">
-              <AnimeCard item={item} />
+          {data.map((item, i) => (
+            <CarouselItem key={i} className="pl-2 md:pl-4 basis-auto">
+              {render(item)}
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious className={cn(
-          "left-4 bg-primary border-primary/50 hover:bg-primary/90 text-primary-foreground",
-          "shadow-lg hover:shadow-xl hover:scale-110 transition-all"
-        )} />
-        <CarouselNext className={cn(
-          "right-4 bg-primary border-primary/50 hover:bg-primary/90 text-primary-foreground", 
-          "shadow-lg hover:shadow-xl hover:scale-110 transition-all"
-        )} />
+
+        <CarouselPrevious
+          className={cn(
+            "left-4 bg-primary border-primary/50 hover:bg-primary/90 text-primary-foreground",
+            "shadow-lg hover:shadow-xl hover:scale-110 transition-all"
+          )}
+        />
+        <CarouselNext
+          className={cn(
+            "right-4 bg-primary border-primary/50 hover:bg-primary/90 text-primary-foreground",
+            "shadow-lg hover:shadow-xl hover:scale-110 transition-all"
+          )}
+        />
       </Carousel>
-      
-      <CarouselIndicators 
-        count={count} 
-        current={current} 
-        onSelect={scrollTo} 
-      />
+
+      <CarouselIndicators count={count} current={current} onSelect={scrollTo} />
     </div>
   )
 }
 
-//------------------------
-
-//------------------------
-
-//----------------------------------
-interface CarouselIndicatorsProps {
+function CarouselIndicators({
+  count,
+  current,
+  onSelect,
+}: {
   count: number
   current: number
   onSelect: (index: number) => void
-}
-//----------------------------------
-function CarouselIndicators({ count, current, onSelect }: CarouselIndicatorsProps) {
+}) {
   if (count <= 1) return null
-  
+
   return (
-    <div className="flex justify-center mt-6 space-x-2" role="tablist" aria-label="Carousel navigation">
-      {Array.from({ length: count }, (_, index) => (
+    <div className="flex justify-center mt-6 space-x-2">
+      {Array.from({ length: count }).map((_, i) => (
         <Button
-          key={index}
+          key={i}
           variant="ghost"
           size="sm"
-          onClick={() => onSelect(index)}
+          onClick={() => onSelect(i)}
           className={cn(
             "w-3 h-3 rounded-full p-0 transition-all duration-300",
             "hover:scale-110 focus-visible:ring-2 focus-visible:ring-primary",
-            current === index + 1 && "scale-125"
+            current === i + 1 && "scale-125"
           )}
           style={{
-            backgroundColor: current === index + 1 ? '#3b82f6' : '#1a1f3a',
-            borderColor: current === index + 1 ? '#3b82f6' : '#60a5fa',
-            boxShadow: current === index + 1 ? '0 0 15px rgba(59, 130, 246, 0.6)' : 'none'
+            backgroundColor: current === i + 1 ? "#3b82f6" : "#1a1f3a",
+            borderColor: current === i + 1 ? "#3b82f6" : "#60a5fa",
+            boxShadow:
+              current === i + 1
+                ? "0 0 15px rgba(59, 130, 246, 0.6)"
+                : "none",
           }}
-          aria-label={`Go to slide ${index + 1}`}
-          role="tab"
-          aria-selected={current === index + 1}
         />
       ))}
     </div>
