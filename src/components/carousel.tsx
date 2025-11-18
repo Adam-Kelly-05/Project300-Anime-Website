@@ -12,12 +12,15 @@ import {
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
-interface ReusableCarouselProps {
-  data: any[]                          // JSON array passed in
-  render: (item: any) => React.ReactNode // component to render each item
+interface ReusableCarouselProps <T>{
+  data: T[]                          // JSON array passed in
+  render: (item: T) => React.ReactNode // component to render each item
 }
 
-export default function ReusableCarousel({ data, render }: ReusableCarouselProps) {
+export default function ReusableCarousel<T>({
+  data,
+  render
+}: ReusableCarouselProps<T>) {
   const [api, setApi] = React.useState<CarouselApi>()
   const [current, setCurrent] = React.useState(0)
   const [count, setCount] = React.useState(0)
