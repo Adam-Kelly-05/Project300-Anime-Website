@@ -1,29 +1,35 @@
+'use client'
+
 import * as React from "react"
-import anime from "../extras/anime.json"
-import reviews from "../extras/reviews.json"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card"
+import { Review } from "@/types/reviews"
 
 export default function ReviewsObject() {
+    const [reviews, setReviews] = React.useState<Review[]>([]);
+
+    React.useEffect(() => {
+        async function fetchReviews() {
+            const response = await fetch("https://p7gfovbtqg.execute-api.eu-west-1.amazonaws.com/prod/reviews");
+            const reviews = await response.json();
+            setReviews(reviews);
+        }
+        fetchReviews();
+    }, []);
     return ( // returns all reviews
         <div className="space-y-4 p-4">
-            {anime.map((animeItem) => {
-                const animesReviews = reviews.filter((review) => review.animeId === animeItem.animeId)
-                return ( // returns each review
-                    <div key={animeItem.animeId} className="space-y-4">
-                        {animesReviews.map((review) => (
-                            <Card key={review.reviewId} className="bg-white text-black rounded-xl">
-                                <CardHeader>
-                                    <CardTitle>{animeItem.englishTitle}</CardTitle>
-                                </CardHeader>
-                                <CardContent>
-                                    <CardDescription>{review.reviewText}</CardDescription>
-                                    <CardDescription>Rating: {review.score}/10</CardDescription>
-                                </CardContent>
-                            </Card>
-                        ))}
-                    </div>
-                )
-            })}
+            {
+            reviews.map((review) => (
+                <Card key={review.reviewId} className="bg-white text-black rounded-xl">
+                    <CardHeader>
+                        <CardTitle>{review.animeName}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <CardDescription>{review.reviewHeader}</CardDescription>
+                        <CardDescription>{review.reviewBody}</CardDescription>
+                        <CardDescription>Rating: {review.rating}/10</CardDescription>
+                    </CardContent>
+                </Card>
+            ))}
         </div>
     )
 }
