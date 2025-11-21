@@ -57,20 +57,20 @@ This project was developed as a third-year Software Development capstone project
 
 ---
 ## 📁 Project Structure
-
+```plaintext
 anirank/
-│
-│── src/
-│ ├── app/ # Next.js 14 App Router
-│ ├── components/ # Reusable UI components
-│ ├── hooks/ # Custom React hooks
-│ ├── lib/ # API and utility functions
-│ ├── styles/ # Global styles
-│ └── types/ # TypeScript definitions
-│── public/ # Static assets
-│── package.json
-│── README.md
-## 📁 Project Structure
+├── src/
+│   ├── app/        # Next.js 14 App Router
+│   ├── components/ # Reusable UI components
+│   ├── hooks/      # Custom React hooks
+│   ├── lib/        # API and utility functions
+│   ├── styles/     # Global styles
+│   └── types/      # TypeScript definitions
+├── public/         # Static assets
+├── package.json
+└── README.md
+```
+
 ---
 
 ## ⚙️ Getting Started
@@ -79,20 +79,27 @@ anirank/
 ```bash
 git clone https://github.com/Adam-Kelly-05/Anirank.git
 cd anirank
-
+```
 ### 2️⃣ Install dependencies
+```bash
 npm install
-
+```
 ### 3️⃣ Configure environment variables
+Create a .env.local file at the root of your project with:
+```env
 NEXT_PUBLIC_AWS_REGION=your-region
 NEXT_PUBLIC_COGNITO_USER_POOL_ID=xxx
 NEXT_PUBLIC_COGNITO_CLIENT_ID=xxx
 NEXT_PUBLIC_API_URL=https://your-api-endpoint
+```
 
-4️⃣ Run the development server
+### 4️⃣ Run the development server
+```bash
 npm run dev
----
----
+```
+
+🏗️ Architecture Diagram
+```mermaid
 flowchart TD
     %% Style settings
     classDef frontend fill:#FFD966,stroke:#333,stroke-width:2px;
@@ -123,12 +130,11 @@ flowchart TD
     linkStyle 2 stroke:#333,stroke-width:2px,stroke-dasharray: 5,5;
     linkStyle 3 stroke:#333,stroke-width:2px,stroke-dasharray: 5,5;
     linkStyle 4 stroke:#E06666,stroke-width:2px,stroke-dasharray: 2,2;
----
+```
 
-📜 License
+📜 License  
+This project is licensed under the MIT License. See the LICENSE file for details.
 
-This project is licensed under the MIT License. See the LICENSE
- file for details.
 
 🌸 Thank you for checking out Anirank! Feedback and contributions are welcome
 
