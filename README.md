@@ -109,12 +109,12 @@ flowchart TD
     classDef storage fill:#F6B26B,stroke:#333,stroke-width:2px;
 
     %% Nodes
-    A[Next.js Frontend<br/>(React + Tailwind)]:::frontend
-    B[API Gateway]:::backend
-    C[AWS Lambda Functions<br/>- Users<br/>- Reviews<br/>- Watchlist<br/>- Anime]:::backend
-    D[DynamoDB Tables<br/>- Users<br/>- Anime<br/>- Reviews<br/>- Watchlist]:::db
-    E[S3 Storage<br/>- Covers<br/>- Avatars]:::storage
-    F[Cognito User Pool<br/>- Auth & JWT]:::auth
+    A["Next.js Frontend\n(React + Tailwind)"]:::frontend
+    B["API Gateway"]:::backend
+    C["AWS Lambda Functions\n- Users\n- Reviews\n- Watchlist\n- Anime"]:::backend
+    D["DynamoDB Tables\n- Users\n- Anime\n- Reviews\n- Watchlist"]:::db
+    E["S3 Storage\n- Covers\n- Avatars"]:::storage
+    F["Cognito User Pool\n- Auth & JWT"]:::auth
 
     %% Connections
     A -->|HTTPS Requests| B
