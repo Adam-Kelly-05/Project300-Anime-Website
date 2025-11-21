@@ -111,10 +111,10 @@ flowchart TD
     %% Nodes
     A["Next.js Frontend\n(React + Tailwind)"]:::frontend
     B["API Gateway"]:::backend
-    C["AWS Lambda Functions\n- Users\n- Reviews\n- Watchlist\n- Anime"]:::backend
-    D["DynamoDB Tables\n- Users\n- Anime\n- Reviews\n- Watchlist"]:::db
-    E["S3 Storage\n- Covers\n- Avatars"]:::storage
-    F["Cognito User Pool\n- Auth & JWT"]:::auth
+    C["AWS Lambda Functions\n• Users\n• Reviews\n• Watchlist\n• Anime"]:::backend
+    D["DynamoDB Tables\n• Users\n• Anime\n• Reviews\n• Watchlist"]:::db
+    E["S3 Storage\n• Covers\n• Avatars"]:::storage
+    F["Cognito User Pool\n• Auth & JWT"]:::auth
 
     %% Connections
     A -->|HTTPS Requests| B
