@@ -70,7 +70,7 @@ anirank/
 │── public/ # Static assets
 │── package.json
 │── README.md
-
+## 📁 Project Structure
 ---
 
 ## ⚙️ Getting Started
@@ -91,7 +91,8 @@ NEXT_PUBLIC_API_URL=https://your-api-endpoint
 
 4️⃣ Run the development server
 npm run dev
-
+---
+---
 flowchart TD
     %% Style settings
     classDef frontend fill:#FFD966,stroke:#333,stroke-width:2px;
@@ -122,8 +123,12 @@ flowchart TD
     linkStyle 2 stroke:#333,stroke-width:2px,stroke-dasharray: 5,5;
     linkStyle 3 stroke:#333,stroke-width:2px,stroke-dasharray: 5,5;
     linkStyle 4 stroke:#E06666,stroke-width:2px,stroke-dasharray: 2,2;
+---
 
+📜 License
 
+This project is licensed under the MIT License. See the LICENSE
+ file for details.
 
 🌸 Thank you for checking out Anirank! Feedback and contributions are welcome
 
