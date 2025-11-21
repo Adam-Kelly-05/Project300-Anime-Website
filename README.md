@@ -109,7 +109,7 @@ flowchart TD
     classDef storage fill:#F6B26B,stroke:#333,stroke-width:2px;
 
     %% Nodes
-    A["Next.js Frontend\n(React + Tailwind)"]:::frontend
+    A["Next.js Frontend<br/>(React + Tailwind)"]:::frontend
     B["API Gateway"]:::backend
     C["AWS Lambda Functions\n• Users\n• Reviews\n• Watchlist\n• Anime"]:::backend
     D["DynamoDB Tables\n• Users\n• Anime\n• Reviews\n• Watchlist"]:::db
